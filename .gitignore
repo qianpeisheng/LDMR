@@ -1,0 +1,63 @@
+# Byte-compiled / caches
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Distribution / packaging
+build/
+dist/
+*.egg-info/
+.eggs/
+mmdet3d/.mim
+
+# Environments
+venv/
+.venv/
+env/
+
+# Datasets. The scans and everything derived from them stay out of git; the
+# preprocessing scripts under data/ are part of the release.
+data/*
+!data/scannet/
+!data/sunrgbd/
+data/scannet/*
+data/sunrgbd/*
+!data/scannet/*.py
+!data/scannet/README.md
+!data/scannet/meta_data/
+!data/sunrgbd/README.md
+!data/sunrgbd/matlab/
+
+# Generated artifacts (see README: checkpoints are hosted on Hugging Face)
+checkpoints/
+release_checkpoints/
+release_data/
+work_dirs/
+my_work_dirs/
+incremental_logs/
+pseudo_labels/*
+!pseudo_labels/.gitkeep
+pseudo_labels_PER_STAGE/*
+!pseudo_labels_PER_STAGE/.gitkeep
+analysis/*
+!analysis/.gitkeep
+*.pth
+*.pkl
+
+# Papers / manuscripts: this is a code repository
+*.pdf
+
+# Internal notes and release tooling (must never be published)
+docs/
+tools/export_anonymous_submission.sh
+HUGGINGFACE_RELEASE_GUIDE.md
+
+# Editors / OS
+.vscode/
+.idea/
+.DS_Store
+*.swp
+nohup.out
