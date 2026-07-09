@@ -41,19 +41,29 @@ def parse_args():
                    help='Destination root; a <protocol>/ subfolder is created')
     p.add_argument('--keep-optimizer', action='store_true',
                    help='Keep optimizer state (~3x larger files)')
+    p.add_argument('--extra-eval-log', type=Path, nargs='*', default=[],
+                   help='Additional eval_summary logs to read scores from, for stages '
+                        'the run itself did not evaluate (e.g. a base stage trained by '
+                        'a separate prep run). The run\'s own logs take precedence.')
     p.add_argument('--dry-run', action='store_true',
                    help='Report what would be exported without writing anything')
     return p.parse_args()
 
 
-def stage_mAP(run_dir):
-    """Read final mAP@0.25 per stage from the run's eval summary, if present."""
-    logs = sorted(run_dir.glob('eval_summary_*.log'))
-    if len(logs) > 1:
-        print(f'  warning: {len(logs)} eval_summary logs in {run_dir.name}; later '
-              f'timestamps win per stage. Logs: {[p.name for p in logs]}')
+def stage_mAP(run_dir, extra_logs=()):
+    """Read final mAP@0.25 per stage from the run's eval summary, if present.
+
+    ``extra_logs`` are parsed first so that any stage the run evaluated itself
+    overrides a value inherited from another run's log.
+    """
+    own = sorted(run_dir.glob('eval_summary_*.log'))
+    if len(own) > 1:
+        print(f'  warning: {len(own)} eval_summary logs in {run_dir.name}; later '
+              f'timestamps win per stage. Logs: {[p.name for p in own]}')
     out = {}
-    for log in logs:
+    for log in list(extra_logs) + own:
+        if not log.is_file():
+            raise SystemExit(f'eval log not found: {log}')
         for line in log.read_text(errors='replace').splitlines():
             m = EVAL_LINE.search(line)
             if m:
@@ -91,7 +101,7 @@ def main():
     if not stage_dirs:
         raise SystemExit(f'No stage_*/ directories under {ckpt_root}')
 
-    scores = stage_mAP(run_dir)
+    scores = stage_mAP(run_dir, args.extra_eval_log)
     out_dir = args.out_dir / args.protocol
     if not args.dry_run:
         out_dir.mkdir(parents=True, exist_ok=True)
@@ -143,6 +153,9 @@ def main():
     manifest = {
         'protocol': args.protocol,
         'source_run': run_dir.name,
+        # Recorded as <run>/<log> rather than a full path: the manifest is
+        # published, and absolute paths would leak the training host's layout.
+        'extra_eval_logs': [f'{p.parent.name}/{p.name}' for p in args.extra_eval_log],
         'num_stages': len(entries),
         'optimizer_stripped': not args.keep_optimizer,
         'total_bytes': total,

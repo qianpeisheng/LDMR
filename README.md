@@ -6,10 +6,9 @@ Official implementation of
 > Peisheng Qian, Jie Xu, Xulei Yang, Na Zhao
 > *European Conference on Computer Vision (ECCV), 2026*
 
-[Paper](https://github.com/qianpeisheng/LDMR) &nbsp;·&nbsp; [Checkpoints](https://huggingface.co/qianpeisheng/LDMR) &nbsp;·&nbsp; [Dataset metadata](https://huggingface.co/datasets/qianpeisheng/LDMR-data)
+[Paper](https://github.com/qianpeisheng/LDMR) &nbsp;·&nbsp; [Checkpoints](https://huggingface.co/Peisheng/LDMR) &nbsp;·&nbsp; [Dataset metadata](https://huggingface.co/datasets/Peisheng/LDMR-data)
 
-> The three links above are placeholders. Replace them once the arXiv entry and
-> the two Hugging Face repos exist.
+> The paper link is a placeholder. Replace it once the arXiv entry exists.
 
 ---
 
@@ -39,12 +38,12 @@ classes, as produced by the configs listed below.
 
 | Dataset | Protocol | mAP@0.25 | Seed | Checkpoints |
 |---|---|---|---|---|
-| SUN RGB-D (40 cls) | 3-stage (20+10+10) | **29.12** | 200 | [🤗](https://huggingface.co/qianpeisheng/LDMR) |
-| SUN RGB-D | 5-stage (8×5) | **25.10** | 200 | [🤗](https://huggingface.co/qianpeisheng/LDMR) |
-| SUN RGB-D | 10-stage (4×10) | **19.38** | 200 | [🤗](https://huggingface.co/qianpeisheng/LDMR) |
-| ScanNetV2 (35 cls) | 3-stage (15+10+10) | **37.81** | 201 | [🤗](https://huggingface.co/qianpeisheng/LDMR) |
-| ScanNetV2 | 5-stage (7×5) | **27.46** | 201 | [🤗](https://huggingface.co/qianpeisheng/LDMR) |
-| ScanNetV2 | 10-stage (3–4 cls/stage) | **17.64** | 200 | [🤗](https://huggingface.co/qianpeisheng/LDMR) |
+| SUN RGB-D (40 cls) | 3-stage (20+10+10) | **29.12** | 200 | [🤗](https://huggingface.co/Peisheng/LDMR/tree/main/sunrgbd_3stage) |
+| SUN RGB-D | 5-stage (8×5) | **25.10** | 200 | [🤗](https://huggingface.co/Peisheng/LDMR/tree/main/sunrgbd_5stage) |
+| SUN RGB-D | 10-stage (4×10) | **19.38** | 200 | [🤗](https://huggingface.co/Peisheng/LDMR/tree/main/sunrgbd_10stage) |
+| ScanNetV2 (35 cls) | 3-stage (15+10+10) | **37.81** | 201 | [🤗](https://huggingface.co/Peisheng/LDMR/tree/main/scannet_3stage) |
+| ScanNetV2 | 5-stage (7×5) | **27.46** | 201 | [🤗](https://huggingface.co/Peisheng/LDMR/tree/main/scannet_5stage) |
+| ScanNetV2 | 10-stage (3–4 cls/stage) | **17.64** | 200 | [🤗](https://huggingface.co/Peisheng/LDMR/tree/main/scannet_10stage) |
 
 We release the checkpoint of **every stage**, not just the final one, so each
 point of the forgetting curve can be inspected.
@@ -147,7 +146,7 @@ data/sunrgbd/sunrgbd_infos_{train,val}_40class.pkl
 
 If you would rather skip the index-building steps, the exact `.pkl` files we used
 (~37 MB) are on the
-[dataset repo](https://huggingface.co/datasets/qianpeisheng/LDMR-data). You still
+[dataset repo](https://huggingface.co/datasets/Peisheng/LDMR-data). You still
 need the extracted point clouds, so the per-scene extraction above is required
 either way.
 

@@ -54,6 +54,7 @@ analysis/*
 docs/
 tools/export_anonymous_submission.sh
 HUGGINGFACE_RELEASE_GUIDE.md
+export_all_ldmr_checkpoints.sh
 
 # Editors / OS
 .vscode/
