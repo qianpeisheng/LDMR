@@ -6,9 +6,7 @@ Official implementation of
 > Peisheng Qian, Jie Xu, Xulei Yang, Na Zhao
 > *European Conference on Computer Vision (ECCV), 2026*
 
-[Paper](https://github.com/qianpeisheng/LDMR) &nbsp;·&nbsp; [Checkpoints](https://huggingface.co/Peisheng/LDMR) &nbsp;·&nbsp; [Dataset metadata](https://huggingface.co/datasets/Peisheng/LDMR-data)
-
-> The paper link is a placeholder. Replace it once the arXiv entry exists.
+[Paper](https://arxiv.org/abs/2607.14560) &nbsp;·&nbsp; [Checkpoints](https://huggingface.co/Peisheng/LDMR) &nbsp;·&nbsp; [Dataset metadata](https://huggingface.co/datasets/Peisheng/LDMR-data)
 
 ---
 
